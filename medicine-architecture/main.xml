@@ -1,0 +1,93 @@
+<systemArchitecture>
+    <frontendUI>
+        <service>BACKEND API HTTP</service>
+    </frontendUI>
+
+    <mainDB>
+        <table name="patients">
+            <column>Patient ID</column>
+            <column>Data Info</column>
+            <column>Last Check</column>
+            <column>Emergency Parameters</column>
+        </table>
+        <table name="emergencyCases">
+            <column>List of Emergencies</column>
+        </table>
+    </mainDB>
+
+    <notificationService>
+        <listener>
+            <listenForEachPatient>Patient ID</listenForEachPatient>
+            <condition>If Emergency</condition>
+            <action>Send Notification</action>
+        </listener>
+        <grpc>gRPC Patient ID</grpc>
+    </notificationService>
+
+    <dataConverterService>
+        <input>Raw Data</input>
+        <output>Human Readable Data</output>
+    </dataConverterService>
+
+    <dataSubscriptionService>
+        <subscribeForLastData>Data Source</subscribeForLastData>
+    </dataSubscriptionService>
+
+    <deviceConnection>
+        <mode>Master-Slave</mode>
+        <protocol>Bluetooth</protocol>
+        <metric>ECG</metric>
+        <metric>Heart Rate</metric>
+        <metric>pH Level</metric>
+        <metric>Blood Glucose</metric>
+        <metric>Temperature</metric>
+        <metric>Saturation</metric>
+    </deviceConnection>
+
+    <MLModel>
+        <decision>
+            <input>All Data</input>
+            <output>Emergency Decision</output>
+        </decision>
+    </MLModel>
+
+    <OPCUAConnection>
+        <server>OPC UA Server</server>
+        <client>OPC UA Client</client>
+    </OPCUAConnection>
+
+    <sensorCollection>
+        <sensor name="Blood Pressure">
+            <input>Bluetooth</input>
+            <output>Data in JSON</output>
+        </sensor>
+        <sensor name="Pulse">
+            <input>Bluetooth</input>
+            <output>Data in JSON</output>
+        </sensor>
+        <sensor name="Saturation">
+            <input>Bluetooth</input>
+            <output>Data in JSON</output>
+        </sensor>
+        <sensor name="Temperature">
+            <input>Bluetooth</input>
+            <output>Data in JSON</output>
+        </sensor>
+        <sensor name="ECG">
+            <input>Bluetooth</input>
+            <output>Data in JSON</output>
+        </sensor>
+        <sensor name="Blood pH">
+            <input>Bluetooth</input>
+            <output>Data in JSON</output>
+        </sensor>
+        <sensor name="Blood Glucose">
+            <input>Bluetooth</input>
+            <output>Data in JSON</output>
+        </sensor>
+    </sensorCollection>
+
+    <emergencyService>
+        <service>Emergency Response</service>
+    </emergencyService>
+</systemArchitecture>
